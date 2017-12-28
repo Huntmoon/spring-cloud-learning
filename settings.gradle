@@ -1,4 +1,5 @@
 rootProject.name = 'spring-cloud-learning'
 include 'eureka'
 include 'swagger-hibernate'
+include 'bootstrap-context'
 
