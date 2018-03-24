@@ -1,7 +1,6 @@
 group 'com.huntmoon'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
 sourceCompatibility = 1.8
 
 
@@ -9,14 +8,10 @@ sourceCompatibility = 1.8
 
 
 
-
-repositories {
-//    maven {
-//        url "https://plugins.gradle.org/m2/"
-//    }
-//    maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-    mavenCentral()
+jar{
+    archiveName='eureka.jar'
 }
+
 
 
 
