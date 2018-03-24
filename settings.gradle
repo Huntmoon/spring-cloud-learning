@@ -3,5 +3,6 @@ include 'eureka'
 include 'swagger-hibernate'
 include 'bootstrap-context'
 include 'spring-bus-amqp'
+include 'servlet'
 include 'spring-async-controller'
 
