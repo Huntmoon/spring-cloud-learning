@@ -57,7 +57,7 @@ allprojects {
     }
     dependencyManagement {
         imports {
-            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR5'
         }
         dependencies {
             dependency 'org.projectlombok:lombok:1.16.18'

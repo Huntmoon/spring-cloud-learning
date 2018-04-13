@@ -1,0 +1,15 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8002/eureka
+      wangtao: http://localhost:8002/eureka
+    availability-zones:
+      us-east-1:  wangtao,defaultZone
+  instance:
+    appname: consumer
+spring:
+  application:
+    name: consumer
+server:
+  port: 8001
+

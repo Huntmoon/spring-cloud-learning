@@ -1,4 +1,4 @@
-package com.huntmoon.amqp;
+package com.huntmoon.amqp.rabitclient;
 
 import com.rabbitmq.client.*;
 
@@ -12,11 +12,13 @@ import java.util.concurrent.TimeoutException;
 public class BasicRabbit {
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("192.168.20.121");
-        connectionFactory.setUsername("admin");
-        connectionFactory.setPassword("admin");
+        connectionFactory.setHost("localhost");
+        connectionFactory.setPort(5672);
+        connectionFactory.setUsername("guest");
+        connectionFactory.setPassword("guest");
         Connection connection = connectionFactory.newConnection();
         Channel channel = connection.createChannel();
+//        channel.basicPublish();
         AMQP.Queue.DeclareOk test = channel.queueDeclare("test", false, false, true, null);
         System.out.println("waiting ");
 
