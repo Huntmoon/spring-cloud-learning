@@ -1,0 +1,5 @@
+spring:
+  rabbitmq:
+    host: 192.168.20.121
+    username: admin
+    password: admin

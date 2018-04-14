@@ -1,15 +1,12 @@
 eureka:
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
-
-#    enabled: false
     service-url:
-      defaultZone: http://localhost:8002/eureka
+      defaultZone: http://192.168.20.123:8002/eureka
+  server:
+    enable-self-preservation: false
+
 server:
   port: 8001
-spring:
-  application:
-    name: eureka-r1
-
 

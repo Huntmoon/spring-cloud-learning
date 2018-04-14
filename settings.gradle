@@ -5,6 +5,8 @@ include 'bootstrap-context'
 include 'spring-bus-amqp'
 include 'servlet'
 include 'spring-async-controller'
+include 'eureka-consumer'
 include 'consumer'
 include 'spring-rabbit'
+include 'spring-cloud-stream'
 

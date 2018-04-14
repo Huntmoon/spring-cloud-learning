@@ -9,4 +9,8 @@ public class RabbitListenserTest {
     public void test(String test){
         System.out.println(test);
     }
+    @RabbitListener(queues = "PhoneMessageQueue")
+    public void test1(String test){
+        System.out.println(test);
+    }
 }
