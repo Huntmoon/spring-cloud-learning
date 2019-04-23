@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jre-alpine
 COPY ./build/libs/eureka.jar /data/webapps/
-EXPOSE 8001
+EXPOSE 9001
 CMD ["java","-jar","/data/webapps/eureka.jar"]

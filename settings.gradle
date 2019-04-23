@@ -9,4 +9,5 @@ include 'eureka-consumer'
 include 'consumer'
 include 'spring-rabbit'
 include 'spring-cloud-stream'
+include 'producer'
 

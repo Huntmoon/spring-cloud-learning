@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: producer
+  sleuth:
+    sampler:
+      percentage: 1.0
+server:
+  port: 9002
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka

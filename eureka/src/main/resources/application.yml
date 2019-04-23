@@ -1,12 +1,10 @@
 eureka:
   client:
     register-with-eureka: false
-    fetch-registry: true
-    service-url:
-      defaultZone: http://192.168.20.123:8002/eureka
+    fetch-registry: false
   server:
     enable-self-preservation: false
 
 server:
-  port: 8001
+  port: 9001
 

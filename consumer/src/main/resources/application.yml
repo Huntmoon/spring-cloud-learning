@@ -1,15 +1,12 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8002/eureka
-      wangtao: http://localhost:8002/eureka
-    availability-zones:
-      us-east-1:  wangtao,defaultZone
-  instance:
-    appname: consumer
+      defaultZone: http://localhost:9001/eureka
 spring:
   application:
     name: consumer
+  sleuth:
+    sampler:
+      percentage: 1.0
 server:
-  port: 8001
-
+  port: 9003
