@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint}%L{4} - %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%X{pid}] --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <property name="APP" value="data-center"/>
+    <property name="LOG_FILE" value="/data/logs/${APP}/${APP}"/>
+<!--    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>-->
+    <!--<conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />-->
+    <!--<property name="CONSOLE_LOG_PATTERN" value="${-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(-&#45;&#45;){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}:%L %clr(:){faint} %m%n}"/>-->
+    <springProfile name="prod,test,uat,sit,dev,stage">
+        <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_FILE}-info.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover daily -->
+                <fileNamePattern>${LOG_FILE}-info.%d{yyyy-MM-dd}.%i</fileNamePattern>
+                <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+                <maxFileSize>100MB</maxFileSize>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="ASYN-INFO" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="INFO"/>
+            <queueSize>1024</queueSize>
+        </appender>
+
+        <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <file>${LOG_FILE}-error.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover daily -->
+                <fileNamePattern>${LOG_FILE}-error.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+                <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+                <maxFileSize>100MB</maxFileSize>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="ASYN-ERROR" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="ERROR"/>
+            <queueSize>1024</queueSize>
+        </appender>
+
+        <appender name="REQUEST" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_FILE}-request.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover daily -->
+                <fileNamePattern>${LOG_FILE}-request.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+                <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+                <maxFileSize>100MB</maxFileSize>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="ASYN-REQUEST" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="REQUEST"/>
+            <queueSize>1024</queueSize>
+        </appender>
+
+        <logger name="request_log" level="INFO" additivity="false">
+            <appender-ref ref="ASYN-REQUEST"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYN-INFO"/>
+            <appender-ref ref="ASYN-ERROR"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="default">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+
+</configuration>

@@ -4,6 +4,8 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+  zipkin:
+    base-url:
 server:
   port: 9002
 eureka:
