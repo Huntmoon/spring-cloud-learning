@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'com.huntmoon'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.drools/drools-core
+    compile group: 'org.drools', name: 'drools-core', version: '6.4.0.Final'
+    // https://mvnrepository.com/artifact/org.drools/drools-compiler
+    compile group: 'org.drools', name: 'drools-compiler', version: '6.4.0.Final'
+    compile group: 'org.drools', name: 'knowledge-api', version: '6.4.0.Final'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.javassist:javassist:3.25.0-GA'
+
+}

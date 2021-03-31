@@ -1,0 +1,9 @@
+spring:
+  mail:
+    host: smtp.exmail.qq.com
+    username: noreply@ndmicro.com
+    password: Nd6666
+    port: 25
+    properties:
+      from: noreply@ndmicro.com
+      mail.smtp.sendpartial: true

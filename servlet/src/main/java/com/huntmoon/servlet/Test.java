@@ -13,6 +13,7 @@ public class Test {
     public void init() {
         log.info("test1");
         MDC.put("pid","1111111111222222");
-        log.info("test");
+        log.error("test {} {}","sss","ddd",new Exception("sldkfsd"));
+        log.error("test ",new Exception("sldkfsd8888"));
     }
 }

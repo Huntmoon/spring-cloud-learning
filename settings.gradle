@@ -10,4 +10,8 @@ include 'consumer'
 include 'spring-rabbit'
 include 'spring-cloud-stream'
 include 'producer'
+include 'kafka'
+include 'lee'
+include 'spring-mail'
+include 'drools-example'
 
